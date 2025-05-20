@@ -42,6 +42,13 @@ def predict_financial_level(input_data):
         prediction_probability = model.predict(processed_data)
         st.subheader("Debugging Prediction Probability:")
         st.write(prediction_probability)
+        st.write(f"Type of prediction_probability: {type(prediction_probability)}")
+        if isinstance(prediction_probability, np.ndarray):
+            st.write(f"Shape of prediction_probability: {prediction_probability.shape}")
+            if prediction_probability.ndim > 1 and prediction_probability.shape[0] > 0:
+                st.write(f"Value of prediction_probability[0][0]: {prediction_probability[0][0]}")
+            elif prediction_probability.ndim == 1 and prediction_probability.size > 0:
+                st.write(f"Value of prediction_probability[0]: {prediction_probability[0]}")
 
         prediction = (prediction_probability > 0.5).astype(int).flatten()
         st.subheader("Debugging Raw Prediction (0 or 1):")
@@ -53,9 +60,11 @@ def predict_financial_level(input_data):
         predicted_class = label_encoder_binary.inverse_transform(prediction)
         st.subheader("Debugging Predicted Class (Before Indexing):")
         st.write(predicted_class)
-
-        st.subheader("Debugging Shape of Predicted Class:")
-        st.write(predicted_class.shape)
+        st.write(f"Type of predicted_class: {type(predicted_class)}")
+        if isinstance(predicted_class, np.ndarray):
+            st.write(f"Shape of predicted_class: {predicted_class.shape}")
+            if predicted_class.size > 0:
+                st.write(f"Value of predicted_class[0]: {predicted_class[0]}")
 
         final_predicted_class = predicted_class[0]
         return final_predicted_class, prediction_probability[0][0]
