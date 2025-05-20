@@ -66,6 +66,12 @@ def predict_financial_level(input_data):
             if predicted_class.size > 0:
                 st.write(f"Value of predicted_class[0]: {predicted_class[0]}")
 
+        st.subheader("Debugging prediction_probability just before return:")
+        st.write(prediction_probability)
+        st.write(f"Type of prediction_probability: {type(prediction_probability)}")
+        if isinstance(prediction_probability, np.ndarray):
+            st.write(f"Shape of prediction_probability: {prediction_probability.shape}")
+
         final_predicted_class = predicted_class[0]
         return final_predicted_class, prediction_probability[0][0]
     except Exception as e:
