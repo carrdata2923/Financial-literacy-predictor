@@ -41,34 +41,59 @@ def main():
     st.title("Student Financial Level Prediction")
     st.write("Enter student features to predict their potential financial level (Passing/Not Passing).")
 
-    # **IMPORTANT:** Adapt these input widgets to match the names and data types
-    # of the columns in your original 'student_financial_data.csv' file.
-    # Replace the examples below with your actual features.
+    edad_options = ['Menos de 24 años', 'De 25 a 44 años', 'De 45 a 64 años', 'Más de 65 años']
+    edad = st.selectbox("Edad", options=edad_options)
 
-    # Example Numerical Feature 1
-    numerical_feature_1 = st.number_input("Numerical Feature 1", value=0.0)
+    genero_options = ['Hombre', 'Mujer', 'Otro']
+    genero = st.selectbox("Género", options=genero_options)
 
-    # Example Categorical Feature 1 (assuming a limited number of options)
-    categorical_feature_1_options = ['Option A', 'Option B', 'Option C'] # Replace with your actual categories
-    categorical_feature_1 = st.selectbox("Categorical Feature 1", options=categorical_feature_1_options)
+    estado_options = ['Solter@', 'En pareja', 'Otro', 'Divorciad@', 'Casad@']
+    estado = st.selectbox("Estado", options=estado_options)
 
-    # Example Numerical Feature 2
-    numerical_feature_2 = st.number_input("Numerical Feature 2", value=0.0)
+    acceso_options = ['Título de Técnico de Grado Superior',
+                      'Prueba de Acceso a Ciclos Formativos de Grado Superior',
+                      'Título Universitario o Equivalente', 'EBAU o EvAU', 'Bachillerato',
+                      'Título de Técnico de Grado Medio',
+                      'Prueba de acceso a la Universidad para mayores de 25 años']
+    acceso = st.selectbox("Acceso", options=acceso_options)
 
-    # Example Categorical Feature 2 (assuming a limited number of options)
-    categorical_feature_2_options = ['Category X', 'Category Y', 'Category Z'] # Replace with your actual categories
-    categorical_feature_2 = st.selectbox("Categorical Feature 2", options=categorical_feature_2_options)
+    actualidad_options = ['Sí', 'No']
+    actualidad = st.selectbox("Actualidad", options=actualidad_options)
 
-    # Add input widgets for ALL your ORIGINAL features here...
-    # Ensure the labels and input types are correct for each feature.
+    canal_options = ['Redes Sociales', 'Medios digitales (Internet)', 'Radio o televisión',
+                     'Medios escritos (Periódico)']
+    canal = st.selectbox("Canal", options=canal_options)
 
-    # Create a Pandas DataFrame from the user inputs with the ORIGINAL column names
+    medio_options = ['El Pais', 'El Mundo', 'Ok Diario', 'La Vanguardia', '20 Minutos',
+                     'El Economista', 'Otros', 'ABC', 'La Voz de Galicia', 'Expansión', 'La Razón',
+                     'El Confidencial', 'El Español', '5 días', 'El Correo']
+    medio = st.selectbox("Medio", options=medio_options)
+
+    equipo_options = ['Real Madrid', 'FC Barcelona', 'Otro', 'Atlético de Madrid',
+                      'No soy seguidor de este deporte']
+    equipo = st.selectbox("Equipo", options=equipo_options)
+
+    resultado_equipo_options = ['Si', 'Empate', 'No', 'No soy seguidor de ningún equipo']
+    resultado_equipo = st.selectbox("Resultado_Equipo", options=resultado_equipo_options)
+
+    clima_options = ['Soleado y radiante', 'Nublado', 'Llueve', 'Nieva']
+    clima = st.selectbox("Clima", options=clima_options)
+
+    animo_options = [1, 2, 3, 4]  # Assuming Animo is a numerical scale
+    animo = st.selectbox("Animo", options=animo_options)
+
     input_df = pd.DataFrame({
-        'numerical_feature_1': [numerical_feature_1], # Replace with your actual column name
-        'categorical_feature_1': [categorical_feature_1], # Replace with your actual column name
-        'numerical_feature_2': [numerical_feature_2], # Replace with your actual column name
-        'categorical_feature_2': [categorical_feature_2], # Replace with your actual column name
-        # Add ALL your ORIGINAL feature columns here with the correct names
+        'Edad': [edad],
+        'Genero': [genero],
+        'Estado': [estado],
+        'Acceso': [acceso],
+        'Actualidad': [actualidad],
+        'Canal': [canal],
+        'Medio': [medio],
+        'Equipo': [equipo],
+        'Resultado_Equipo': [resultado_equipo],
+        'Clima': [clima],
+        'Animo': [animo],
     })
 
     if st.button("Predict"):
