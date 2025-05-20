@@ -29,7 +29,7 @@ except Exception as e:
     st.stop()
 
 def predict_financial_level(input_data):
-    """Makes a prediction using the loaded model and includes debugging prints."""
+    """Makes a prediction using the loaded model and includes more detailed debugging."""
     st.subheader("Debugging Input Data:")
     st.write(input_data)
 
@@ -46,10 +46,17 @@ def predict_financial_level(input_data):
         st.subheader("Debugging Raw Prediction (0 or 1):")
         st.write(prediction)
 
-        predicted_class = label_encoder_binary.inverse_transform(prediction)[0]
-        return predicted_class, prediction_probability[0][0]
+        st.subheader("Debugging Label Encoder Classes:")
+        st.write(label_encoder_binary.classes_)
+
+        predicted_class = label_encoder_binary.inverse_transform(prediction)
+        st.subheader("Debugging Predicted Class (Before Indexing):")
+        st.write(predicted_class)
+
+        final_predicted_class = predicted_class[0]
+        return final_predicted_class, prediction_probability[0][0]
     except Exception as e:
-        st.error(f"Error during prediction: {e}")
+        st.error(f"Error during final prediction processing: {e}")
         return None, None
 
 def main():
