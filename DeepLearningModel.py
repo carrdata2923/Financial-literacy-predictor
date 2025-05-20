@@ -1,3 +1,4 @@
+# app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -52,6 +53,9 @@ def predict_financial_level(input_data):
         predicted_class = label_encoder_binary.inverse_transform(prediction)
         st.subheader("Debugging Predicted Class (Before Indexing):")
         st.write(predicted_class)
+
+        st.subheader("Debugging Shape of Predicted Class:")
+        st.write(predicted_class.shape)
 
         final_predicted_class = predicted_class[0]
         return final_predicted_class, prediction_probability[0][0]
