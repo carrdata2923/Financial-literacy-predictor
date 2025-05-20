@@ -10,7 +10,7 @@ try:
     model = keras.models.load_model('student_financial_model.keras')
     st.success("Model loaded successfully!")
 except Exception as e:
-    st.error(f"Error loading the model: {e}")
+    st.error(f"Error loading the model: {type(e)}, {e}")
     st.stop()
 
 # Load the preprocessor
@@ -18,7 +18,7 @@ try:
     preprocessor = joblib.load('preprocessor.joblib')
     st.success("Preprocessor loaded successfully!")
 except Exception as e:
-    st.error(f"Error loading the preprocessor: {e}")
+    st.error(f"Error loading the preprocessor: {type(e)}, {e}")
     st.stop()
 
 # Load the binary label encoder
@@ -26,11 +26,11 @@ try:
     label_encoder_binary = joblib.load('label_encoder_binary.joblib')
     st.success("Label encoder loaded successfully!")
 except Exception as e:
-    st.error(f"Error loading the label encoder: {e}")
+    st.error(f"Error loading the label encoder: {type(e)}, {e}")
     st.stop()
 
 def predict_financial_level(input_data):
-    """Makes a prediction using the loaded model and includes more detailed debugging."""
+    """Makes a prediction using the loaded model and includes detailed debugging."""
     st.subheader("Debugging Input Data:")
     st.write(input_data)
 
@@ -60,7 +60,7 @@ def predict_financial_level(input_data):
         final_predicted_class = predicted_class[0]
         return final_predicted_class, prediction_probability[0][0]
     except Exception as e:
-        st.error(f"Error during final prediction processing: {e}")
+        st.error(f"Error during final prediction processing: {type(e)}, {e}")
         return None, None
 
 def main():
