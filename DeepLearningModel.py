@@ -98,6 +98,8 @@ def main():
 
     if st.button("Predict"):
         predicted_level, probability = predict_financial_level(input_df)
+        st.write("Input DataFrame:")  # Add this line
+        st.write(input_df)          # Add this line
         if predicted_level:
             st.subheader("Prediction:")
             st.write(f"The predicted financial level is: **{predicted_level}**")
